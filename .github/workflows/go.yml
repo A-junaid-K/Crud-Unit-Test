@@ -17,9 +17,9 @@ jobs:
       postgres:
         image: postgres:latest
         env:
-          POSTGRES_DB: cicd
-          POSTGRES_USER: root
-          POSTGRES_PASSWORD: 12345
+          POSTGRES_DB: ajkdb
+          POSTGRES_USER: ajk
+          POSTGRES_PASSWORD: 11012005
         ports:
           - 5432:5432
     steps:
