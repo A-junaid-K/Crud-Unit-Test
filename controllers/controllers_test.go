@@ -24,7 +24,7 @@ func TestCreateUser(t *testing.T) {
 
 	router.POST("/", CreateUser(db))
 
-	input := models.Ussankutti{
+	input := models.Employee{
 		Name:  "abdul manaf",
 		Email: "manafabdulc@yopmail.com",
 		Phone: "9995657894",
@@ -65,7 +65,7 @@ func TestUpdateUser(t *testing.T) {
 
 	router.PUT("/:id", UpdateUser(db))
 
-	input := models.Ussankutti{
+	input := models.Employee{
 		Name:  "rahim",
 		Email: "abdulrahimkt@gmail.com",
 		Phone: "96451 61597",
@@ -95,6 +95,6 @@ func TestDeleteUser(t *testing.T) {
 
 	assert.Equal(t, 200, res.Result().StatusCode)
 
-	db.Migrator().DropTable(models.Ussankutti{})
+	db.Migrator().DropTable(models.Employee{})
 
 }

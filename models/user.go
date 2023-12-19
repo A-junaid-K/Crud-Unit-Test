@@ -1,6 +1,6 @@
 package models
 
-type Ussankutti struct {
+type Employee struct {
 	ID    uint   `json:"id" gorm:"primaryKey;unique"`
 	Name  string `json:"name" gorm:"not null" validate:"min=5,max=20"`
 	Email string `json:"email" gorm:"not null" validate:"email"`

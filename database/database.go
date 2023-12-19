@@ -24,5 +24,5 @@ func createDB() *gorm.DB {
 }
 
 func autoMigrate(db *gorm.DB) {
-	db.AutoMigrate(&models.Ussankutti{})
+	db.AutoMigrate(&models.Employee{})
 }

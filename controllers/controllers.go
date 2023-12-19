@@ -11,7 +11,7 @@ import (
 
 func CreateUser(db *gorm.DB) gin.HandlerFunc {
 	return func(c *gin.Context) {
-		var user models.Ussankutti
+		var user models.Employee
 		if err := c.Bind(&user); err != nil {
 			c.JSON(500, gin.H{
 				"message": "binding error",
@@ -19,7 +19,7 @@ func CreateUser(db *gorm.DB) gin.HandlerFunc {
 			return
 		}
 
-		err := db.Create(&models.Ussankutti{
+		err := db.Create(&models.Employee{
 			Name:  user.Name,
 			Email: user.Email,
 			Phone: user.Phone,
@@ -40,7 +40,7 @@ func CreateUser(db *gorm.DB) gin.HandlerFunc {
 func GetUserById(db *gorm.DB) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		id, _ := strconv.Atoi(c.Param("id"))
-		var user models.Ussankutti
+		var user models.Employee
 		if err := db.First(&user, id).Error; err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{
 				"error": err.Error(),
@@ -57,7 +57,7 @@ func UpdateUser(db *gorm.DB) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		id, _ := strconv.Atoi(c.Param("id"))
 
-		var user models.Ussankutti
+		var user models.Employee
 
 		if err := c.Bind(&user); err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{
@@ -65,7 +65,7 @@ func UpdateUser(db *gorm.DB) gin.HandlerFunc {
 			})
 			return
 		}
-		err := db.Model(&models.Ussankutti{}).Where("id=?", id).Updates(map[string]interface{}{"name": user.Name, "email": user.Email, "phone": user.Phone}).Error
+		err := db.Model(&models.Employee{}).Where("id=?", id).Updates(map[string]interface{}{"name": user.Name, "email": user.Email, "phone": user.Phone}).Error
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{
 				"error": err.Error(),
@@ -82,7 +82,7 @@ func DeleteUser(db *gorm.DB) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		id, _ := strconv.Atoi(c.Param("id"))
 
-		err := db.Where("id=?", id).Delete(&models.Ussankutti{}).Error
+		err := db.Where("id=?", id).Delete(&models.Employee{}).Error
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{
 				"error": err.Error(),
