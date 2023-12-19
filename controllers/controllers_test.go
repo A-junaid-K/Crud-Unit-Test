@@ -25,7 +25,7 @@ func TestCreateUser(t *testing.T) {
 	router.POST("/", CreateUser(db))
 
 	input := models.Employee{
-		Name:  "abdul manaf",
+		Name:  "abdul manaf c",
 		Email: "manafabdulc@yopmail.com",
 		Phone: "9995657894",
 	}

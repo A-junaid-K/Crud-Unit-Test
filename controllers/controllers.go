@@ -5,6 +5,7 @@ import (
 	"strconv"
 
 	"github.com/gin-gonic/gin"
+	"github.com/go-playground/validator/v10"
 	"github.com/testing_ap/models"
 	"gorm.io/gorm"
 )
@@ -31,6 +32,17 @@ func CreateUser(db *gorm.DB) gin.HandlerFunc {
 			})
 			return
 		}
+
+		var validate = validator.New()
+		err = validate.Struct(user)
+		if err != nil {
+			c.JSON(422,gin.H{
+				"message":"validation failed",
+			})
+			return
+		}
+
+
 		c.JSON(http.StatusOK, gin.H{
 			"message": "successfully crated " + user.Name,
 		})
