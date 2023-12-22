@@ -25,9 +25,9 @@ func TestCreateUser(t *testing.T) {
 	router.POST("/", CreateUser(db))
 
 	input := models.Employee{
-		Name:  "abdul manaf c",
-		Email: "manafabdulc@yopmail.com",
-		Phone: "9995657894",
+		Name:  "adolf hitler",
+		Email: "hitlergermany@yopmail.com",
+		Phone: "9978653432",
 	}
 	reqBody, err := json.Marshal(input)
 	if err != nil {
